@@ -105,3 +105,14 @@ body {
   font-size: 12px;
   margin-bottom: 5px;
 }
+
+.page-404 img {
+  width: 300px;
+  text-align: center;
+}
+
+.page-404 {
+  margin: auto;
+  width: fit-content;
+  line-height: 100vh;
+}

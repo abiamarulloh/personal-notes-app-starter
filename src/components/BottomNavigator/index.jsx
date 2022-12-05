@@ -8,13 +8,13 @@ export const BottomNavigator = () => {
     return <>
         <div className="space"></div>
         <div className="bottom-navigator">
-            <Link to="/" className={'bottom-navigator-item ' + (params.pathname === '/' ? 'selected' : '')}>
+            <Link to="/notes" className={'bottom-navigator-item ' + (params.pathname === '/notes' ? 'selected' : '')}>
                 <FaHome />
             </Link>
-            <Link to="/new" className={'bottom-navigator-item ' + (params.pathname === '/new' ? 'selected' : '')}>
+            <Link to="/notes/new" className={'bottom-navigator-item ' + (params.pathname === '/notes/new' ? 'selected' : '')}>
                 <FaPlus />
             </Link>
-            <Link to="/archive" className={'bottom-navigator-item ' + (params.pathname === '/archive' ? 'selected' : '')}>
+            <Link to="/notes/archive" className={'bottom-navigator-item ' + (params.pathname === '/notes/archive' ? 'selected' : '')}>
                 <FaArchive />
             </Link>
         </div>

@@ -9,7 +9,7 @@ export const ArchiveNotes = () => {
             {
                 (getArchivedNotes().length > 0 ) ? (
                     getArchivedNotes().map((note) => {
-                        return <Link to={ '/archive/' + note.id }  key={note.id}>
+                        return <Link to={ '/notes/archive/' + note.id }  key={note.id}>
                                 <div className="note-item">
                                     <h3 className="note-item__title">{note.title}</h3>
                                     <span className="note-item__createdAt">{showFormattedDate(note.createdAt)}</span>
@@ -20,8 +20,8 @@ export const ArchiveNotes = () => {
                 ) : (
                     <>
                        <div className="note-item__empty">
-                            <img src="./undraw_No_data_re_kwbl.png" alt="" />
-                            Tidak ada catatan archive
+                            <img src="./notes_empty.png" alt="notes_empty" />
+                            Arsip kosong
                         </div> 
                     </>
                 )

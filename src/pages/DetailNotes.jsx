@@ -1,5 +1,6 @@
 import { BiArchiveIn } from "react-icons/bi";
 import { FaTrash } from "react-icons/fa";
+import { MdOutlineUnarchive } from "react-icons/md";
 import { useLocation, useParams } from "react-router-dom";
 import { showFormattedDate } from "../utils";
 import { archiveNote, deleteNote, getNote, unarchiveNote } from "../utils/local-data";
@@ -16,12 +17,12 @@ export const DetailNotes = () => {
         }else {
             archiveNote(noteId)
         }
-        window.history.back("/");
+        window.history.back("/notes");
     }
 
      const handleDelete = (noteId) => {
         deleteNote(noteId)
-        window.history.back("/");
+        window.history.back("/notes");
     }
 
     return <>
@@ -32,7 +33,11 @@ export const DetailNotes = () => {
 
            <div className="actions">
                 <div className="archive">
-                    <BiArchiveIn onClick={() => handleArchiveOrNotArchive(note.id)} size={20} />
+                    {
+                        location.pathname.includes('archive') ? 
+                        <MdOutlineUnarchive onClick={() => handleArchiveOrNotArchive(note.id)} size={20} /> :
+                        <BiArchiveIn onClick={() => handleArchiveOrNotArchive(note.id)} size={20} />
+                    }
                 </div>
 
                 <div className="delete" >
