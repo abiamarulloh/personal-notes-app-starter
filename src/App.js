@@ -13,6 +13,7 @@ function App() {
     <div className="app-container">
       <Header />
       <Routes>
+        <Route path="/" element={<Notes />} />
         <Route path="/notes" element={<Notes />} />
         <Route path="/notes/:id" element={<DetailNotes />} />
         <Route path="/notes/new" element={<AddNotes />} />
