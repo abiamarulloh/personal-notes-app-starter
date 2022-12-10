@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from "react";
 import { Button } from "../../atoms/Button";
 import { Input } from "../../atoms/Input";
@@ -49,4 +50,11 @@ export class Form extends React.Component {
             </div>
         );
     }
+}
+
+Form.propTypes = {
+    title: PropTypes.string,
+    body: PropTypes.string,
+    createdAt: PropTypes.string,
+    archived: PropTypes.string,
 }

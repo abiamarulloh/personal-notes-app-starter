@@ -20,6 +20,7 @@ function App() {
         <Route path="/notes/archive" element={<ArchiveNotes />} />
         <Route path="/notes/archive/:id" element={<DetailNotes />} />
         <Route path="*" element={<Page404 />} />
+        <Route path="/notes/*" element={<Page404 />} />
       </Routes>
       <BottomNavigator />
     </div>
