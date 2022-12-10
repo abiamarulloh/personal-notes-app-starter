@@ -12,7 +12,7 @@ import { RegisterPage } from './pages/Register';
 import { BottomNavigator } from './parts/BottomNavigator';
 import { Header } from './parts/Header';
 import { NOTES_ROUTE_PATH } from './utils';
-import { getUserLogged, putAccessToken } from './utils/api';
+import { putAccessToken } from './utils/api';
 
 class App extends Component {
   constructor(props) {
@@ -64,11 +64,9 @@ class App extends Component {
  
   async onLoginSuccess({ accessToken }) {
     putAccessToken(accessToken);
-    const { data } = await getUserLogged();
-
     this.setState(() => {
       return {
-        authenticatedUser: data,
+        authenticatedUser: accessToken,
       };
     });
   }
