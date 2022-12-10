@@ -14,4 +14,5 @@
 
 p {
     float: right;
+    color: var(--color)
 }

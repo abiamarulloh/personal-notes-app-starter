@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import React from "react";
+import { LocaleConsumer } from '../../../contexts/LocaleContext';
+import { translate } from '../../../utils';
 import { Button } from "../../atoms/Button";
 import { Input } from "../../atoms/Input";
 import { Textarea } from "../../atoms/Textarea";
@@ -39,15 +41,25 @@ export class Form extends React.Component {
     
     render() { 
         return (
-            <div className="form" >
-                <Title title="Buat Catatan" size="20px" />
-                <p>Sisa Karakter: { 50 - this.state.title.length }</p>
-                <form  onSubmit={this.handleSubmit}>
-                    <Input type="text" value={this.state.title} onChange={this.handleChangeTitle}  placeholder="Tuliskan Judul disini..." />
-                    <Textarea value={this.state.body} onChange={this.handleChangeBody} placeholder="Tuliskan catatanmu disini.." />
-                    <Button title="Submit" type="submit" />
-                </form>
-            </div>
+            <LocaleConsumer>
+                {
+                ({ locale }) => {
+                        return <>
+                            <div className="form" >
+                                <Title title={ translate(locale, 'Buat Catatan', 'Create Note')  } size="20px" />
+                                <p> { translate(locale, 'Sisa Karakter: ', 'Remaining Characters: ') }   { 50 - this.state.title.length }</p>
+                                <form  onSubmit={this.handleSubmit}>
+                                    <Input type="text" value={this.state.title} onChange={this.handleChangeTitle}  placeholder={ translate(locale, 'Tulis Judul catatan mu disini', 'Enter your note title here')  } />
+                                    <Textarea value={this.state.body} onChange={this.handleChangeBody} placeholder={ 
+                                        translate(locale, 'Tulis Catatan mu disini', 'Enter your note here') } />
+                                    <Button title={ translate(locale, 'Tambah', 'submit') } type="submit" />
+                                </form>
+                            </div>
+                        </>
+
+                }
+            }
+            </LocaleConsumer>
         );
     }
 }

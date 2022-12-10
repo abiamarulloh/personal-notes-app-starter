@@ -1,4 +1,4 @@
 h1 {
-    color: black;
+    color: var(--color);
     font-size: 30px;
 }

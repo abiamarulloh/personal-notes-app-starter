@@ -1,10 +1,13 @@
+import { useNavigate } from "react-router-dom";
 import { Form } from "../components/molecules/Form";
-import { addNote } from "../utils/local-data";
+import { addNote } from "../utils/api";
 
 export function AddNotes() {
+    const navigate = useNavigate()
+    
     const onSubmitHandler = (e) => {
         addNote(e)
-        window.history.back("/notes");
+        navigate("/notes");
     }
 
     return (

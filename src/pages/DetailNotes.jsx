@@ -1,29 +1,52 @@
+import { useEffect, useState } from "react";
 import { BiArchiveIn } from "react-icons/bi";
 import { FaTrash } from "react-icons/fa";
 import { MdOutlineUnarchive } from "react-icons/md";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Loading } from "../components/atoms/Loading";
 import { showFormattedDate } from "../utils";
-import { archiveNote, deleteNote, getNote, unarchiveNote } from "../utils/local-data";
+import { archiveNote, deleteNote, getNote, unarchiveNote } from "../utils/api";
 import { Page404 } from './404Page';
 
 export const DetailNotes = () => {
     const params = useParams();
     const location = useLocation();
+    const navigate = useNavigate();
+    const [note, setNote] = useState('');
+    const [spinner, setSpinner] = useState(true)
+            
+    const currentArchivePage = location.pathname.includes('archive')
 
-    let note = getNote(params?.id)
+    useEffect(() => {
+        getNote(params.id).then(({data}) => {
+            setNote(data)
+            setSpinner(false)
+        }, () => {
+            setSpinner(false)
+        })
+    }, [params.id])
 
     const handleArchiveOrNotArchive = (noteId) => {
-        if(location.pathname.includes('archive')) {
+        if(currentArchivePage) {
             unarchiveNote(noteId)
+            navigate("/notes/archive");
         }else {
             archiveNote(noteId)
+            navigate("/notes");
         }
-        window.history.back("/notes");
     }
 
-     const handleDelete = (noteId) => {
+    const handleDelete = (noteId) => {
+        if(currentArchivePage) {
+            navigate("/notes/archive");
+        }else {
+            navigate("/notes");
+        }
         deleteNote(noteId)
-        window.history.back("/notes");
+    }
+
+    if(spinner) {
+        return <Loading />
     }
 
     return (
@@ -47,7 +70,7 @@ export const DetailNotes = () => {
                                     <FaTrash onClick={() => handleDelete(note.id)} />
                                 </div>
                         </div>
-                        </div>
+                    </div>
                 </>
             :
                 <>

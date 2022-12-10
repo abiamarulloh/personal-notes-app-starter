@@ -1,22 +1,23 @@
-:root {
-  --primary: #BB86FC;
-  --primary-variant: #3700B3;
-  --secondary: #03DAC6;
-  --background: #121212;
-  --surface: #121212;
-  --error: #CF6679;
-  --warning: #F39C12;
-  --on-background: #FFFFFF;
-  --on-background-grey: #c7c7c7;
-  --on-surface: #FFFFFF;
+[data-theme="dark"] {
+  --background: #181D31;
+  --color: white;
+  --background-inner: #6D67E4;
+  --border: white;
+  --background-hover: white;
+  --color-hover: black;
+  --background-button: white;
+  --color-button: black;
 }
 
 [data-theme="light"] {
-  --background: #DDDDDD;
-  --suface: #FFFFFF;
-  --on-background: #333333;
-  --on-background-grey: #6d6d6d;
-  --on-surface: #333333;
+  --background: white;
+  --color: '#181D31';
+  --background-inner: white;
+  --border: #6D67E4;
+  --background-hover: black;
+  --color-hover: white;
+  --background-button: black;
+  --color-button: white;
 }
 
 * {
@@ -26,14 +27,14 @@
 }
 
 a {
-  color: var(--on-background);
+  color: var(--color);
 }
-
 
 body {
   font-family: 'Inter', sans-serif;
   width: 30%;
   margin: auto;
+  background-color: var(--background);
 
 }
 
@@ -43,25 +44,19 @@ body {
   }
 }
 
-.notes-list {
-
-}
-
 .note-item {
-  border: 1px solid black;
+  border: 1px solid var(--border);
   margin-bottom: 20px;
   padding: 10px;
   border-radius: 10px;
-  background-color: white;
-  color: black;
+  background-color: var(--background-inner);
+  color: var(--color);
   text-decoration: none;
   height: 100px;
   width: 100%;
   overflow: hidden;
   padding: 10px 10px;
 }
-
-
 
 .note-item .list {
   overflow: hidden;
@@ -71,12 +66,12 @@ body {
   -webkit-box-orient: vertical;
 }
 
-
 .note-item__empty {
   width: 100%;
   margin-top: 50px;
   text-align: center;
   font-size: 25px;
+  color: var(--color);
 }
 
 .note-item__empty img {
@@ -92,7 +87,7 @@ body {
   position: relative;
 }
 
-.note-item.detail  .actions {
+.note-item.detail .actions {
   position: absolute;
   bottom: 15px;
   right: 15px;
@@ -101,9 +96,13 @@ body {
 }
 
 .note-item:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--background-hover);
+  color: var(--color-hover);
   cursor: pointer;
+}
+
+.note-item:hover .note-item__body {
+  color: var(--color-hover);
 }
 
 .note-item__title {
@@ -146,7 +145,7 @@ body {
 
 .form-item label {
   font-size: 12px;
-  color: black;
+  color: var(--color);
   margin-bottom: 10px;
   display: block;
 }
@@ -159,17 +158,21 @@ body {
   padding-left: 10px;
 }
 
+p.form-item.link {
+    margin-top: 20px;
+}
+
 .title {
   width: 100%;
   text-align: center;
   margin-top:30px;
-  color: black;
+  color: var(--color);
 }
 
 .form-item button {
   width: 100%;
-  background-color: black;
-  color: white;
+  background-color: var(--background-button);
+  color: var(--color-button);
   padding: 10px;
   cursor: pointer;
 }
