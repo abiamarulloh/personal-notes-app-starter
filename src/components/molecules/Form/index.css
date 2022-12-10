@@ -1,0 +1,17 @@
+.form {
+    width: 350px;
+    margin: 30px auto;
+}
+
+.form Input, .form Textarea  {
+    margin-bottom: 10px;
+    border-radius: 0;
+}
+
+.form Button  {
+    width: 100%;
+}
+
+p {
+    float: right;
+}

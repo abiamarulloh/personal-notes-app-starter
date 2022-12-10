@@ -13,14 +13,14 @@ export const ArchiveNotes = () => {
                                 <div className="note-item">
                                     <h3 className="note-item__title">{note.title}</h3>
                                     <span className="note-item__createdAt">{showFormattedDate(note.createdAt)}</span>
-                                    <p className="note-item__body">{note.body}</p>
+                                    <p className="note-item__body list">{note.body}</p>
                                 </div>
                             </Link>
                     })
                 ) : (
                     <>
                        <div className="note-item__empty">
-                            <img src="./notes_empty.png" alt="notes_empty" />
+                            <img src="/notes_empty.png" alt="" />
                             Arsip kosong
                         </div> 
                     </>

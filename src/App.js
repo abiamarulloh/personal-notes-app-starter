@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { BottomNavigator } from './components/BottomNavigator';
-import { Header } from './components/Header';
 import { Page404 } from './pages/404Page';
 import { AddNotes } from './pages/AddNotes';
 import { ArchiveNotes } from './pages/ArchiveNotes';
 import { DetailNotes } from './pages/DetailNotes';
 import { Notes } from './pages/Notes';
+import { BottomNavigator } from './parts/BottomNavigator';
+import { Header } from './parts/Header';
 
 function App() {
   return (
