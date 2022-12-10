@@ -36,7 +36,7 @@ export class Form extends React.Component {
         event.preventDefault();
         this.props.onSubmitForm(this.state);            
     }
-
+    
     render() { 
         return (
             <div className="form" >
@@ -53,8 +53,5 @@ export class Form extends React.Component {
 }
 
 Form.propTypes = {
-    title: PropTypes.string,
-    body: PropTypes.string,
-    createdAt: PropTypes.string,
-    archived: PropTypes.string,
+    onSubmitForm: PropTypes.func,
 }
