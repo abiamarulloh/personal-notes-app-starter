@@ -12,15 +12,15 @@ import { RegisterPage } from './pages/Register';
 import { BottomNavigator } from './parts/BottomNavigator';
 import { Header } from './parts/Header';
 import { NOTES_ROUTE_PATH } from './utils';
-import { putAccessToken } from './utils/api';
+import { getUserLogged, putAccessToken } from './utils/api';
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      authenticatedUser: localStorage.getItem('accessToken') || null,
-      initializing: false,
+      authenticatedUser:  localStorage.getItem('authenticatedUser') ||  null,
+      accessToken: localStorage.getItem('accessToken') ||  null,
       localeContext: {
         locale: localStorage.getItem('locale') || 'id',
         toggleLocale: () => {
@@ -64,9 +64,14 @@ class App extends Component {
  
   async onLoginSuccess({ accessToken }) {
     putAccessToken(accessToken);
+
+    const { data } = await getUserLogged();
+    localStorage.setItem('authenticatedUser', JSON.stringify(data));
+    
     this.setState(() => {
       return {
-        authenticatedUser: accessToken,
+        authenticatedUser: JSON.stringify(data),
+        accessToken: accessToken
       };
     });
   }
@@ -74,19 +79,17 @@ class App extends Component {
   onLogout() {
     this.setState(() => {
       return {
-        authenticatedUser: null
+        authenticatedUser: null,
+        accessToken: null
       }
     });
 
     putAccessToken('');
+    localStorage.removeItem('authenticatedUser')
   }
 
 
   render() {
-    if (this.state.initializing) {
-      return null;
-    }
-
     if (this.state.authenticatedUser === null) {
       return (
         <LocaleProvider value={this.state.localeContext}>
